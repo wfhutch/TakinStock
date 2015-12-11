@@ -21,7 +21,7 @@ namespace TakinStock.Tests.Models
             Users user = new Users();
             user.Email = "me@me.com";
             Assert.AreEqual("me@me.com", user.Email);
-        }
+        } 
 
         [TestMethod]
         public void UserEnsureCanSeeAllItems()
@@ -36,7 +36,7 @@ namespace TakinStock.Tests.Models
             user.UserID = 1;
             user.Items = items_list;
             List<Items> actual = user.Items;
-            CollectionAssert.AreEqual(actual, user.Items);
+            CollectionAssert.AreEqual(actual, items_list);
         }
     }
 }
