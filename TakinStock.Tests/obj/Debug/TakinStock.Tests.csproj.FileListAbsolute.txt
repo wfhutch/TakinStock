@@ -52,3 +52,5 @@ C:\Users\Wayne\Documents\GitHubVisualStudio\TakinStock\TakinStock.Tests\bin\Debu
 C:\Users\Wayne\Documents\GitHubVisualStudio\TakinStock\TakinStock.Tests\obj\Debug\TakinStock.Tests.csprojResolveAssemblyReference.cache
 C:\Users\Wayne\Documents\GitHubVisualStudio\TakinStock\TakinStock.Tests\obj\Debug\TakinStock.Tests.dll
 C:\Users\Wayne\Documents\GitHubVisualStudio\TakinStock\TakinStock.Tests\obj\Debug\TakinStock.Tests.pdb
+C:\Users\Wayne\Documents\GitHubVisualStudio\TakinStock\TakinStock.Tests\bin\Debug\Moq.dll
+C:\Users\Wayne\Documents\GitHubVisualStudio\TakinStock\TakinStock.Tests\bin\Debug\Moq.xml

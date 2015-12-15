@@ -10,6 +10,8 @@ namespace TakinStock.Models
     {
         [Key]
         public int UserID { get; set; }
+
+        [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
         public List<Items> Items { get; set; }
     }

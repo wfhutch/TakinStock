@@ -66,3 +66,4 @@ C:\Users\Wayne\Documents\GitHubVisualStudio\TakinStock\TakinStock\bin\Microsoft.
 C:\Users\Wayne\Documents\GitHubVisualStudio\TakinStock\TakinStock\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 C:\Users\Wayne\Documents\GitHubVisualStudio\TakinStock\TakinStock\obj\Debug\TakinStock.dll
 C:\Users\Wayne\Documents\GitHubVisualStudio\TakinStock\TakinStock\obj\Debug\TakinStock.pdb
+C:\Users\Wayne\Documents\GitHubVisualStudio\TakinStock\TakinStock\obj\Debug\TakinStock.csprojResolveAssemblyReference.cache
