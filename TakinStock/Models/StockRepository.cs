@@ -77,5 +77,26 @@ namespace TakinStock.Models
             }
             return is_added;
         }
+
+        public List<Items> SearchByType(string search_string)
+        {
+            var query = from type in _context.Items select type;
+            List<Items> found_items = query.Where(item => item.Type.Contains(search_string)).ToList();
+            return found_items;
+        }
+
+        public List<Items> SearchByMake(string search_string)
+        {
+            var query = from make in _context.Items select make;
+            List<Items> found_items = query.Where(make => make.Make.Contains(search_string)).ToList();
+            return found_items;
+        }
+
+        public List<Items> SearchByDate(DateTime search_date)
+        {
+            var query = from date in _context.Items select date;
+            List<Items> found_items = query.Where(date => date.PurchaseDate.Equals(search_date)).ToList();
+            return found_items;
+        }
     }
 }

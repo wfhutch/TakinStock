@@ -18,14 +18,14 @@ namespace TakinStock.Tests.Models
         public void ItemsEnsureICanCreateAnItem()
         {
             Items item = new Items();
-            DateTime expected = DateTime.Now;
+            DateTime expected_date = DateTime.Now.Date;
             item.ItemsID = 1234;
             item.Type = "Electronics";
             item.Make = "Samsung";
             item.Model = "46HD1234";
             item.Description = "46 HDTV";
             item.SerialNumber = "AB123CD456";
-            item.PurchaseDate = expected;
+            item.PurchaseDate = expected_date;
             item.PurchasePrice = 499.99M;
             item.PurchasedFrom = "Best Buy";
             item.Image = "Some S3 URL";
@@ -36,7 +36,7 @@ namespace TakinStock.Tests.Models
             Assert.AreEqual(item.Model, "46HD1234");
             Assert.AreEqual(item.Description, "46 HDTV");
             Assert.AreEqual(item.SerialNumber, "AB123CD456");
-            Assert.AreEqual(item.PurchaseDate, expected);
+            Assert.AreEqual(item.PurchaseDate, expected_date);
             Assert.AreEqual(item.PurchasePrice, 499.99M);
             Assert.AreEqual(item.PurchasedFrom, "Best Buy");
             Assert.AreEqual(item.Image, "Some S3 URL");
