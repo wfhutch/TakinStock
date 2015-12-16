@@ -32,9 +32,21 @@ namespace TakinStock.Models
             return query.ToList();
         }
 
-        public bool AddNewItem(List<Items> expected)
+        public bool AddNewItem(Users user, Items expected)
         {
-            throw new NotImplementedException();
+            user.Items.Add(expected);
+            bool is_added = true;
+            try
+            {
+                Items added_item = _context.Items.Add(expected);
+                _context.SaveChanges();
+
+            }
+            catch (Exception)
+            {
+                is_added = false;
+            }
+            return is_added;
         }
     }
 }

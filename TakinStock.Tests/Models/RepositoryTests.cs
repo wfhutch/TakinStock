@@ -126,16 +126,31 @@ namespace TakinStock.Tests.Models
         [TestMethod]
         public void RepoEnsureICanAddANewItem()
         {
-            DateTime purchase_date = DateTime.Now;
+            DateTime purchase_date = DateTime.Now.Date;
             Users test_user = new Users { UserID = 1 };
-            var expected = new List<Items>
+            var expected = new List<Items>(); //This is the empty database
+            Items newItem = new Items
             {
-                new Items {ItemsID = 1, UserID = test_user.UserID, Type = "Electronics", Make = "Samsung", Model = "HD48SM", SerialNumber = "A123B456", PurchaseDate = purchase_date, PurchasedFrom = "Best Buy", Image = "Image URL"  }
+                ItemsID = 1,
+                Type = "Electronics",
+                Make = "Samsung",
+                Model = "HD48SM",
+                SerialNumber = "A123B456",
+                PurchaseDate = purchase_date,
+                PurchasedFrom = "Best Buy",
+                Image = "Image URL",
+                LostByDamage = false,
+                Stolen = false
             };
 
-            mock_set.Object.AddRange(expected);
             ConnectMocksToDataStore(expected);
-            bool added = repo.AddNewItem(expected);
+
+            //Listen for any item trying to be added to the database. When you see on add it to 'expected'
+            mock_set.Setup(i => i.Add(It.IsAny<Items>())).Callback((Items s) => expected.Add(s));
+
+            bool added = repo.AddNewItem(test_user, newItem);
+
+            Assert.AreEqual(1, repo.GetAllItems().Count);
         }
 
 
