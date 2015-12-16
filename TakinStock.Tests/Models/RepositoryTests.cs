@@ -128,28 +128,25 @@ namespace TakinStock.Tests.Models
         {
             DateTime purchase_date = DateTime.Now.Date;
             Users test_user = new Users { UserID = 1 };
-            var expected = new List<Items>(); //This is the empty database
-            Items newItem = new Items
-            {
-                ItemsID = 1,
-                Type = "Electronics",
-                Make = "Samsung",
-                Model = "HD48SM",
-                SerialNumber = "A123B456",
-                PurchaseDate = purchase_date,
-                PurchasedFrom = "Best Buy",
-                Image = "Image URL",
-                LostByDamage = false,
-                Stolen = false
-            };
+            List<Items> emptyDB = new List<Items>(); //This is the empty database
+            ConnectMocksToDataStore(emptyDB);
 
-            ConnectMocksToDataStore(expected);
+            string type = "Electronics";
+            string make = "Samsung";
+            string model = "HD48SM";
+            string serialNumber = "A123B456";
+            DateTime purchaseDate = purchase_date;
+            string purchasedFrom = "Best Buy";
+            string image = "Image URL";
+            bool damaged = false;
+            bool stolen = false;
 
             //Listen for any item trying to be added to the database. When you see on add it to 'expected'
-            mock_set.Setup(i => i.Add(It.IsAny<Items>())).Callback((Items s) => expected.Add(s));
+            mock_set.Setup(i => i.Add(It.IsAny<Items>())).Callback((Items s) => emptyDB.Add(s));
 
-            bool added = repo.AddNewItem(test_user, newItem);
+            bool added = repo.AddNewItem(test_user, type, make, model, serialNumber, purchaseDate, purchasedFrom, image, damaged, stolen);
 
+            Assert.IsTrue(added);
             Assert.AreEqual(1, repo.GetAllItems().Count);
         }
 
