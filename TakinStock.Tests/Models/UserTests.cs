@@ -33,7 +33,6 @@ namespace TakinStock.Tests.Models
                 new Items {Make = "Yamaha" }
             };
             Users user = new Users();
-            user.UserID = 1;
             user.Items = items_list;
             List<Items> actual = user.Items;
             CollectionAssert.AreEqual(actual, items_list);

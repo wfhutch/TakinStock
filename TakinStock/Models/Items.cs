@@ -10,6 +10,7 @@ namespace TakinStock.Models
     {
         [Key]
         public int ItemsID { get; set; }
+        public int UserID { get; set; }
         public string Type { get; set; }
         public string Make { get; set; }
         public string Model { get; set; }

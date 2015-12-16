@@ -25,5 +25,16 @@ namespace TakinStock.Models
             var query = from items in _context.Items select items;
             return query.ToList();
         }
+
+        public List<Users> GetAllUsers()
+        {
+            var query = from users in _context.User select users;
+            return query.ToList();
+        }
+
+        public bool AddNewItem(List<Items> expected)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
