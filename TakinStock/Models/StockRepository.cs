@@ -32,22 +32,6 @@ namespace TakinStock.Models
             return query.ToList();
         }
 
-        public bool AddNewItem(Users user, Items expected)
-        {
-            bool is_added = true;
-            try
-            {
-                user.Items.Add(expected);
-                _context.SaveChanges();
-
-            }
-            catch (Exception)
-            {
-                is_added = false;
-            }
-            return is_added;
-        }
-
         public bool AddNewItem(Users test_user, string type, string make, string model, string serialNumber, DateTime purchaseDate, string purchasedFrom, string image, bool damaged, bool stolen)
         {
             bool is_added = true;

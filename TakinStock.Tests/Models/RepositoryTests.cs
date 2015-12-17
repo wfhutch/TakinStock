@@ -209,7 +209,7 @@ namespace TakinStock.Tests.Models
         {
             DateTime first_date = DateTime.Now.Date;
             DateTime second_date = DateTime.Now.AddYears(1);
-            DateTime third_date = DateTime.Now.AddYears(2);
+            DateTime third_date = DateTime.Now.AddYears(1);
 
             var expected = new List<Items>
             {
