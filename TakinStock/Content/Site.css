@@ -1,8 +1,8 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
+    margin-left: 100px;
     background-color: rgba(255,236,215,.55);
-    color: blue;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -38,13 +38,22 @@ textarea {
 }
 
 .navbar-collapse {
-    font-size: 18px;
-    color: #000000;
+    font-size: 20px;
+    color: antiquewhite !important;
+}
+
+.nav-li a {
+    color: antiquewhite !important;
 }
 
 .navbar-brand {
-    font-size: 24px;
-    color: blue;
+    font-size: 26px;
+    color: antiquewhite !important;
 }
+
+#new-item-header {
+    margin: 50px 50px;
+}
+
 
 
