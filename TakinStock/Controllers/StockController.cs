@@ -20,7 +20,15 @@ namespace TakinStock.Controllers
         // GET: Stock
         public ActionResult Index()
         {
-            List<Items> my_items = Repo.GetAllItems();
+            ViewBag.Title = "My Items!";
+
+            List<string> my_items = new List<string>();
+            my_items.Add("Item 1");
+            my_items.Add("Item 2");
+            my_items.Add("Item 3");
+            my_items.Add("Item 4");
+            my_items.Add("Item 5");
+
             return View(my_items);
         }
 
