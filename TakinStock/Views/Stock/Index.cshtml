@@ -1,20 +1,30 @@
 ﻿@model IEnumerable<string>
 
 @{
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_StockLayout.cshtml";
 }
 
 
 
 <h2>@ViewBag.Title</h2>
 
-<p>Here is a list of items!</p>
+<h4>Here is a list of items!</h4>
 
 
 @foreach (var item in Model)
 {
     <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-4">
+            <div>
+                @item
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div>
+                @item
+            </div>
+        </div>
+        <div class="col-md-4">
             <div>
                 @item
             </div>
