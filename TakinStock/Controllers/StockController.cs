@@ -32,6 +32,12 @@ namespace TakinStock.Controllers
             return View(my_items);
         }
 
+        // GET: Stock/AddNewItem
+        public ActionResult AddNewItem()
+        {
+            return View();
+        }
+
         // GET: Stock/Details/5
         public ActionResult Details(int id)
         {
