@@ -18,6 +18,7 @@ namespace TakinStock.Controllers
 
 
         // GET: Stock
+        [Authorize]
         public ActionResult Index()
         {
             ViewBag.Title = "My Items!";
@@ -33,6 +34,7 @@ namespace TakinStock.Controllers
         }
 
         // GET: Stock/AddNewItem
+        [Authorize]
         public ActionResult AddNewItem()
         {
             return View();
