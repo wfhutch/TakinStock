@@ -26,18 +26,36 @@ namespace TakinStock.Models
             return query.ToList();
         }
 
+        public List<Items> GetUserItems(Users user)
+        {
+            if (user != null)
+            {
+                var query = from u in _context.User where u.UserID == user.UserID select u;
+                Users found_user = query.SingleOrDefault<Users>();
+                if (found_user == null)
+                {
+                    return new List<Items>();
+                }
+                return found_user.Items;
+            }
+            else
+            {
+                return new List<Items>();
+            }
+        }
+
         public List<Users> GetAllUsers()
         {
             var query = from users in _context.User select users;
             return query.ToList();
         }
 
-        public bool AddNewItem(Users test_user, string type, string make, string model, string serialNumber, DateTime purchaseDate, string purchasedFrom, string image, bool damaged, bool stolen)
+        public bool AddNewItem(Users owner, string type, string make, string model, string serialNumber, DateTime purchaseDate, string purchasedFrom, string image, bool damaged, bool stolen)
         {
             bool is_added = true;
             Items new_item = new Items
             {
-                Owner = test_user,
+                Owner = owner,
                 Type = type,
                 Make = make,
                 Model = model,
@@ -56,7 +74,6 @@ namespace TakinStock.Models
             }
             catch (Exception)
             {
-
                 is_added = false;
             }
             return is_added;
@@ -81,6 +98,23 @@ namespace TakinStock.Models
             var query = from date in _context.Items select date;
             List<Items> found_items = query.Where(date => date.PurchaseDate.Equals(search_date)).ToList();
             return found_items;
+        }
+
+        public bool AddNewUser(ApplicationUser user)
+        {
+            Users new_user = new Users { RealUser = user, Email = user.Email };
+            bool is_added = true;
+            try
+            {
+                Users added_user = _context.User.Add(new_user);
+                _context.SaveChanges();
+            }
+            catch (Exception)
+            {
+
+                is_added = false;
+            }
+            return is_added;
         }
     }
 }

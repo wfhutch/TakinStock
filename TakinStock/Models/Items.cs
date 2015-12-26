@@ -35,5 +35,6 @@ namespace TakinStock.Models
         public string Image { get; set; }
         public bool LostByDamage { get; set; }
         public bool Stolen { get; set; }
+
     }
 }

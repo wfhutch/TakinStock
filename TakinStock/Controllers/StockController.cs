@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using TakinStock.Models;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
 
 namespace TakinStock.Controllers
 {
@@ -21,16 +23,33 @@ namespace TakinStock.Controllers
         [Authorize]
         public ActionResult Index()
         {
-            ViewBag.Title = "My Items!";
+            string user_id = User.Identity.GetUserId();
+            ApplicationUser real_user = Repo.Context.Users.FirstOrDefault(u => u.Id == user_id);
+            Users me = null;
+            try
+            {
+                me = Repo.GetAllUsers().Where(u => u.RealUser.Id == user_id).Single();
 
-            List<string> my_items = new List<string>();
-            my_items.Add("Item 1");
-            my_items.Add("Item 2");
-            my_items.Add("Item 3");
-            my_items.Add("Item 4");
-            my_items.Add("Item 5");
+            }
+            catch (Exception)
+            {
+                bool successful = Repo.AddNewUser(real_user);
+            }
+            List<Items> list_of_items = Repo.GetUserItems(me);
+            return View(list_of_items);
 
-            return View(my_items);
+            //List<Items> my_items = Repo.GetAllItems();
+            //return View(my_items);
+            //ViewBag.Title = "My Items!";
+
+            //List<string> my_items = new List<string>();
+            //my_items.Add("Item 1");
+            //my_items.Add("Item 2");
+            //my_items.Add("Item 3");
+            //my_items.Add("Item 4");
+            //my_items.Add("Item 5");
+
+            //return View(my_items);
         }
 
         // GET: Stock/AddNewItem
