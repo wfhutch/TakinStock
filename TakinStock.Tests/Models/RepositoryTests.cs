@@ -5,6 +5,9 @@ using System.Collections.Generic;
 using Moq;
 using System.Data.Entity;
 using System.Linq;
+using Microsoft.AspNet.Identity;
+
+
 
 namespace TakinStock.Tests.Models
 {
@@ -15,6 +18,8 @@ namespace TakinStock.Tests.Models
         private Mock<DbSet<Items>> mock_set;
         private Mock<DbSet<Users>> mock_set_users;
         private StockRepository repo;
+        private ApplicationUser test_user;
+        private ApplicationUser test_user2;
 
         private void ConnectMocksToDataStore(IEnumerable<Items> data_store)
         {
@@ -55,6 +60,9 @@ namespace TakinStock.Tests.Models
             mock_set = new Mock<DbSet<Items>>();
             mock_set_users = new Mock<DbSet<Users>>();
             repo = new StockRepository(mock_context.Object);
+            test_user = new ApplicationUser { Email = "test@example.com", Id = "MyId" };
+            test_user2 = new ApplicationUser { Email = "test2@example.com", Id = "MyId2" };
+
         }
 
         [TestCleanup]
@@ -64,6 +72,9 @@ namespace TakinStock.Tests.Models
             mock_set = null;
             mock_set_users = null;
             repo = null;
+            test_user = null;
+            test_user2 = null;
+
         }
 
         [TestMethod]
@@ -107,6 +118,40 @@ namespace TakinStock.Tests.Models
         }
 
         [TestMethod]
+        public void RepoEnsureICanGetAllItemsForASpecificUser()
+        {
+            DateTime purchase_date = DateTime.Now.Date;
+            List<Users> users_table = new List<Users>();
+            List<Items> items_table = new List<Items>();
+
+            Items test_item = new Items();
+            
+            //test_item.Owner = test_owner;
+            test_item.Make = "Samsung";
+            test_item.Type = "Electronics";
+            test_item.Model = "HD48SM";
+            test_item.SerialNumber = "A123B456";
+            test_item.PurchaseDate = purchase_date;
+            test_item.PurchasedFrom = "Best Buy";
+            test_item.Image = "Image URL";
+            test_item.LostByDamage = false;
+            test_item.Stolen = false;
+
+            items_table.Add(test_item);
+            Users test_owner = new Users { RealUser = test_user, UserID = 1, Items = items_table};
+            users_table.Add(test_owner);
+
+            ConnectMocksToDataStore(users_table);
+            ConnectMocksToDataStore(items_table);
+
+            mock_set_users.Setup(i => i.Add(It.IsAny<Users>())).Callback((Users s) => users_table.Add(s));
+            mock_set.Setup(i => i.Add(It.IsAny<Items>())).Callback((Items s) => items_table.Add(s));
+            List<Items> expected = repo.GetUserItems(test_owner);
+
+            Assert.AreEqual(1, expected.Count);
+        }
+
+        [TestMethod]
         public void RepoEnsureICanGetAllUsers()
         {
             var expected = new List<Users>
@@ -124,13 +169,30 @@ namespace TakinStock.Tests.Models
         }
 
         [TestMethod]
+        public void RepoEnsureICanAddANewUser()
+        {
+            List<Users> emptyDB = new List<Users>(); //This is the empty database table
+            ConnectMocksToDataStore(emptyDB);
+
+            mock_set_users.Setup(i => i.Add(It.IsAny<Users>())).Callback((Users s) => emptyDB.Add(s));
+
+            bool added = repo.AddNewUser(test_user);
+
+            Users stock_user = repo.GetAllUsers().Where(u => u.RealUser.Id == test_user.Id).SingleOrDefault();
+            Assert.IsNotNull(stock_user);
+            Assert.IsTrue(added);
+            Assert.AreEqual(1, repo.GetAllUsers().Count);
+        }
+
+        [TestMethod]
         public void RepoEnsureICanAddANewItem()
         {
             DateTime purchase_date = DateTime.Now.Date;
-            Users test_user = new Users { UserID = 1 };
+            Users stock_user = new Users { Email = "me@example.com" };
             List<Items> emptyDB = new List<Items>(); //This is the empty database
             ConnectMocksToDataStore(emptyDB);
 
+            Users owner = stock_user;
             string type = "Electronics";
             string make = "Samsung";
             string model = "HD48SM";
@@ -141,10 +203,10 @@ namespace TakinStock.Tests.Models
             bool damaged = false;
             bool stolen = false;
 
-            //Listen for any item trying to be added to the database. When you see one add it to 'emptyDB'
+            //Listen for any item trying to be added to the database. When you see one add it to emptyDB
             mock_set.Setup(i => i.Add(It.IsAny<Items>())).Callback((Items s) => emptyDB.Add(s));
 
-            bool added = repo.AddNewItem(test_user, type, make, model, serialNumber, purchaseDate, purchasedFrom, image, damaged, stolen);
+            bool added = repo.AddNewItem(owner, type, make, model, serialNumber, purchaseDate, purchasedFrom, image, damaged, stolen);
 
             Assert.IsTrue(added);
             Assert.AreEqual(1, repo.GetAllItems().Count);
