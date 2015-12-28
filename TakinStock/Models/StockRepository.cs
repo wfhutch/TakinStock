@@ -2,6 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Microsoft.AspNet.Identity;
+using System.Data;
+using System.Data.Entity;
+using System.Net;
+using System.Web.Mvc;
+
 
 namespace TakinStock.Models
 {
@@ -36,7 +42,14 @@ namespace TakinStock.Models
                 {
                     return new List<Items>();
                 }
-                return found_user.Items;
+                if (found_user.Items == null)
+                {
+                    return new List<Items>();
+                }
+                else
+                {
+                    return found_user.Items;
+                }
             }
             else
             {
@@ -50,16 +63,31 @@ namespace TakinStock.Models
             return query.ToList();
         }
 
-        public bool AddNewItem(Users owner, string type, string make, string model, string serialNumber, DateTime purchaseDate, string purchasedFrom, string image, bool damaged, bool stolen)
+        public bool AddNewItem(string type, string make, string model, string serialNumber, string purchasePrice, 
+            string description, DateTime purchaseDate, string purchasedFrom, string image, bool damaged, bool stolen)
         {
+
+            //string user_id = User.Identity.GetUserId();
+            //ApplicationUser real_user = Repo.Context.Users.FirstOrDefault(u => u.Id == user_id);
+            //Users me = null;
+            //if (Repo.GetAllUsers().Where(u => u.RealUser.Id == user_id).Count() < 1)
+            //{
+            //    bool successful = Repo.AddNewUser(real_user);
+            //}
+            //else
+            //{
+            //    me = Repo.GetAllUsers().Where(u => u.RealUser.Id == user_id).First();
+            //}
+
             bool is_added = true;
             Items new_item = new Items
             {
-                Owner = owner,
                 Type = type,
                 Make = make,
                 Model = model,
+                Description = description,
                 SerialNumber = serialNumber,
+                PurchasePrice = purchasePrice,
                 PurchaseDate = purchaseDate,
                 PurchasedFrom = purchasedFrom,
                 Image = image,
