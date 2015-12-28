@@ -28,18 +28,32 @@ namespace TakinStock.Controllers
         [Authorize]
         public ActionResult Index()
         {
+
             string user_id = User.Identity.GetUserId();
             ApplicationUser real_user = Repo.Context.Users.FirstOrDefault(u => u.Id == user_id);
             Users me = null;
-            try
-            {
-                me = Repo.GetAllUsers().Where(u => u.RealUser.Id == user_id).Single();
-
-            }
-            catch (Exception)
+            if (Repo.GetAllUsers().Where(u => u.RealUser.Id == user_id).Count() < 1)
             {
                 bool successful = Repo.AddNewUser(real_user);
             }
+            else
+            {
+                me = Repo.GetAllUsers().Where(u => u.RealUser.Id == user_id).First();
+            }
+
+
+            //string user_id = User.Identity.GetUserId();
+            //ApplicationUser real_user = Repo.Context.Users.FirstOrDefault(u => u.Id == user_id);
+            //Users me = null;
+            //try
+            //{
+            //    me = Repo.GetAllUsers().Where(u => real_user.Id == u.RealUser.Id).Single();
+
+            //}
+            //catch (Exception)
+            //{
+            //    bool successful = Repo.AddNewUser(real_user);
+            //}
             List<Items> list_of_items = Repo.GetUserItems(me);
             return View(list_of_items);
         }
@@ -71,7 +85,7 @@ namespace TakinStock.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ItemsID,Owner,Type,Make,Model,Description,SerialNumber,PurchasePrice,PurchaseDate,PurchasedFrom,Image")] Items items)
+        public ActionResult Create([Bind(Include = "ItemsID,Type,Make,Model,Description,SerialNumber,PurchasePrice,PurchaseDate,PurchasedFrom,Image")] Items items)
         {
             if (ModelState.IsValid)
             {
