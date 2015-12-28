@@ -169,10 +169,29 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ItemsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\StockController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201512172212059_InitialCreate.cs" />
+    <Compile Include="Migrations\201512172212059_InitialCreate.Designer.cs">
+      <DependentUpon>201512172212059_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201512210131204_SeedData.cs" />
+    <Compile Include="Migrations\201512210131204_SeedData.Designer.cs">
+      <DependentUpon>201512210131204_SeedData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201512221540232_ChangedRealUserName.cs" />
+    <Compile Include="Migrations\201512221540232_ChangedRealUserName.Designer.cs">
+      <DependentUpon>201512221540232_ChangedRealUserName.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201512222055119_VirtualRealUser.cs" />
+    <Compile Include="Migrations\201512222055119_VirtualRealUser.Designer.cs">
+      <DependentUpon>201512222055119_VirtualRealUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Items.cs" />
@@ -192,6 +211,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <None Include="Properties\PublishProfiles\takinstockcapstone.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -238,6 +258,16 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Stock\Index.cshtml" />
+    <Content Include="Views\Shared\_StockLayout.cshtml" />
+    <Content Include="Views\Shared\_Nav.cshtml" />
+    <Content Include="Views\Stock\AddNewItem.cshtml" />
+    <Content Include="Views\Stock\EditItem.cshtml" />
+    <Content Include="Views\Items\Create.cshtml" />
+    <Content Include="Views\Items\Delete.cshtml" />
+    <Content Include="Views\Items\Details.cshtml" />
+    <Content Include="Views\Items\Edit.cshtml" />
+    <Content Include="Views\Items\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -249,6 +279,20 @@
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201512172212059_InitialCreate.resx">
+      <DependentUpon>201512172212059_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201512210131204_SeedData.resx">
+      <DependentUpon>201512210131204_SeedData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201512221540232_ChangedRealUserName.resx">
+      <DependentUpon>201512221540232_ChangedRealUserName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201512222055119_VirtualRealUser.resx">
+      <DependentUpon>201512222055119_VirtualRealUser.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -64,6 +64,10 @@ C:\Users\Wayne\Documents\GitHubVisualStudio\TakinStock\TakinStock\bin\Microsoft.
 C:\Users\Wayne\Documents\GitHubVisualStudio\TakinStock\TakinStock\bin\Microsoft.Owin.Security.Google.xml
 C:\Users\Wayne\Documents\GitHubVisualStudio\TakinStock\TakinStock\bin\Microsoft.Owin.Security.Twitter.xml
 C:\Users\Wayne\Documents\GitHubVisualStudio\TakinStock\TakinStock\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+C:\Users\Wayne\Documents\GitHubVisualStudio\TakinStock\TakinStock\obj\Debug\TakinStock.Migrations.InitialCreate.resources
+C:\Users\Wayne\Documents\GitHubVisualStudio\TakinStock\TakinStock\obj\Debug\TakinStock.Migrations.SeedData.resources
+C:\Users\Wayne\Documents\GitHubVisualStudio\TakinStock\TakinStock\obj\Debug\TakinStock.Migrations.ChangedRealUserName.resources
+C:\Users\Wayne\Documents\GitHubVisualStudio\TakinStock\TakinStock\obj\Debug\TakinStock.Migrations.VirtualRealUser.resources
+C:\Users\Wayne\Documents\GitHubVisualStudio\TakinStock\TakinStock\obj\Debug\TakinStock.csproj.GenerateResource.Cache
 C:\Users\Wayne\Documents\GitHubVisualStudio\TakinStock\TakinStock\obj\Debug\TakinStock.dll
 C:\Users\Wayne\Documents\GitHubVisualStudio\TakinStock\TakinStock\obj\Debug\TakinStock.pdb
-C:\Users\Wayne\Documents\GitHubVisualStudio\TakinStock\TakinStock\obj\Debug\TakinStock.csprojResolveAssemblyReference.cache
