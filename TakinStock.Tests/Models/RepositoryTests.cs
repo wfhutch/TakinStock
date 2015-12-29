@@ -188,15 +188,19 @@ namespace TakinStock.Tests.Models
         public void RepoEnsureICanAddANewItem()
         {
             DateTime purchase_date = DateTime.Now.Date;
+            Users user = new Users { UserID = 500 };
+            
             List<Items> emptyDB = new List<Items>(); //This is the empty database
             ConnectMocksToDataStore(emptyDB);
 
+            int item_id = 1;
+            Users owner = user;
             string type = "Electronics";
             string make = "Samsung";
             string model = "HD48SM";
             string description = "48\" HDTV";
             string serialNumber = "A123B456";
-            string purchasePrice = "499.99";
+            decimal purchasePrice = 499.99M;
             DateTime purchaseDate = purchase_date;
             string purchasedFrom = "Best Buy";
             string image = "Image URL";
@@ -206,7 +210,7 @@ namespace TakinStock.Tests.Models
             //Listen for any item trying to be added to the database. When you see one add it to emptyDB
             mock_set.Setup(i => i.Add(It.IsAny<Items>())).Callback((Items s) => emptyDB.Add(s));
 
-            bool added = repo.AddNewItem(type, make, model, description, serialNumber, purchasePrice, purchaseDate,
+            bool added = repo.AddNewItem(owner, item_id, type, make, model, description, serialNumber, purchasePrice, purchaseDate,
                 purchasedFrom, image, damaged, stolen);
 
             Assert.IsTrue(added);

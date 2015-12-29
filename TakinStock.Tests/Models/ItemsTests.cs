@@ -26,7 +26,7 @@ namespace TakinStock.Tests.Models
             item.Description = "46 HDTV";
             item.SerialNumber = "AB123CD456";
             item.PurchaseDate = expected_date;
-            item.PurchasePrice = "499.99";
+            item.PurchasePrice = 499.99M;
             item.PurchasedFrom = "Best Buy";
             item.Image = "Some S3 URL";
 
@@ -37,7 +37,7 @@ namespace TakinStock.Tests.Models
             Assert.AreEqual(item.Description, "46 HDTV");
             Assert.AreEqual(item.SerialNumber, "AB123CD456");
             Assert.AreEqual(item.PurchaseDate, expected_date);
-            Assert.AreEqual(item.PurchasePrice, "499.99");
+            Assert.AreEqual(item.PurchasePrice, 499.99M);
             Assert.AreEqual(item.PurchasedFrom, "Best Buy");
             Assert.AreEqual(item.Image, "Some S3 URL");
             Assert.IsFalse(item.LostByDamage);
