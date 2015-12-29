@@ -35,7 +35,7 @@
         <th>
             @Html.DisplayNameFor(model => model.PurchasedFrom)
         </th>
-        <th>
+        @*<th>
             @Html.DisplayNameFor(model => model.Image)
         </th>
         <th>
@@ -43,7 +43,7 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Stolen)
-        </th>
+        </th>*@
         <th></th>
     </tr>
 
@@ -73,7 +73,7 @@
         <td>
             @Html.DisplayFor(modelItem => item.PurchasedFrom)
         </td>
-        <td>
+        @*<td>
             @Html.DisplayFor(modelItem => item.Image)
         </td>
         <td>
@@ -81,7 +81,7 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Stolen)
-        </td>
+        </td>*@
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.ItemsID }) |
             @Html.ActionLink("Details", "Details", new { id=item.ItemsID }) |

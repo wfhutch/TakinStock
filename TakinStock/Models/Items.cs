@@ -23,7 +23,7 @@ namespace TakinStock.Models
 
         [Display(Name = "Purchase Price")]
         [DataType(DataType.Currency)]
-        public string PurchasePrice { get; set; }
+        public decimal PurchasePrice { get; set; }
 
         [Display(Name = "Purchase Date")]
         [DataType(DataType.Date)]

@@ -37,18 +37,20 @@ namespace TakinStock.Models
             if (user != null)
             {
                 var query = from u in _context.User where u.UserID == user.UserID select u;
+                var item_query = from i in _context.Items where i.Owner.UserID == user.UserID select i;
+                List<Items> my_items = item_query.ToList();
                 Users found_user = query.SingleOrDefault<Users>();
                 if (found_user == null)
                 {
                     return new List<Items>();
                 }
-                if (found_user.Items == null)
+                if (my_items == null)
                 {
                     return new List<Items>();
                 }
                 else
                 {
-                    return found_user.Items;
+                    return my_items;
                 }
             }
             else
@@ -63,25 +65,15 @@ namespace TakinStock.Models
             return query.ToList();
         }
 
-        public bool AddNewItem(string type, string make, string model, string serialNumber, string purchasePrice, 
-            string description, DateTime purchaseDate, string purchasedFrom, string image, bool damaged, bool stolen)
+        public bool AddNewItem(Users me, int id, string type, string make, string model, string description, string serialNumber, decimal purchasePrice, 
+            DateTime purchaseDate, string purchasedFrom, string image, bool damaged, bool stolen)
         {
-
-            //string user_id = User.Identity.GetUserId();
-            //ApplicationUser real_user = Repo.Context.Users.FirstOrDefault(u => u.Id == user_id);
-            //Users me = null;
-            //if (Repo.GetAllUsers().Where(u => u.RealUser.Id == user_id).Count() < 1)
-            //{
-            //    bool successful = Repo.AddNewUser(real_user);
-            //}
-            //else
-            //{
-            //    me = Repo.GetAllUsers().Where(u => u.RealUser.Id == user_id).First();
-            //}
 
             bool is_added = true;
             Items new_item = new Items
             {
+                Owner = me,
+                ItemsID = id,
                 Type = type,
                 Make = make,
                 Model = model,
