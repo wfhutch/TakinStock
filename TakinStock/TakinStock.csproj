@@ -191,6 +191,14 @@
     <Compile Include="Migrations\201512222055119_VirtualRealUser.Designer.cs">
       <DependentUpon>201512222055119_VirtualRealUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201512291844203_Display name.cs" />
+    <Compile Include="Migrations\201512291844203_Display name.Designer.cs">
+      <DependentUpon>201512291844203_Display name.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201512292110149_PriceToDecimal.cs" />
+    <Compile Include="Migrations\201512292110149_PriceToDecimal.Designer.cs">
+      <DependentUpon>201512292110149_PriceToDecimal.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -292,6 +300,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201512222055119_VirtualRealUser.resx">
       <DependentUpon>201512222055119_VirtualRealUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201512291844203_Display name.resx">
+      <DependentUpon>201512291844203_Display name.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201512292110149_PriceToDecimal.resx">
+      <DependentUpon>201512292110149_PriceToDecimal.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
