@@ -11,9 +11,9 @@
 </p>
 <table class="table">
     <tr>
-        <th>
+        @*<th>
             @Html.DisplayNameFor(model => model.Type)
-        </th>
+        </th>*@
         <th>
             @Html.DisplayNameFor(model => model.Make)
         </th>
@@ -23,9 +23,9 @@
         <th>
             @Html.DisplayNameFor(model => model.Description)
         </th>
-        <th>
+        @*<th>
             @Html.DisplayNameFor(model => model.SerialNumber)
-        </th>
+        </th>*@
         <th>
             @Html.DisplayNameFor(model => model.PurchasePrice)
         </th>
@@ -49,9 +49,9 @@
 
 @foreach (var item in Model) {
     <tr>
-        <td>
+        @*<td>
             @Html.DisplayFor(modelItem => item.Type)
-        </td>
+        </td>*@
         <td>
             @Html.DisplayFor(modelItem => item.Make)
         </td>
@@ -61,9 +61,9 @@
         <td>
             @Html.DisplayFor(modelItem => item.Description)
         </td>
-        <td>
+        @*<td>
             @Html.DisplayFor(modelItem => item.SerialNumber)
-        </td>
+        </td>*@
         <td>
             @Html.DisplayFor(modelItem => item.PurchasePrice)
         </td>
