@@ -60,5 +60,25 @@ textarea {
     border-radius: 5px;
 }
 
+a {
+    color: #af3a11;
+}
+
+th {
+    font-family: Times, "Times New Roman", Georgia, serif;
+    font-size: 1.5em;
+}
+
+.home-index-greeting {
+    font-family: Times, "Times New Roman", Georgia, serif;
+    padding: 30px;
+}
+
+button {
+    background-color: brown;
+    color: white;
+}
+
+
 
 

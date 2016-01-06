@@ -26,9 +26,12 @@ namespace TakinStock.Controllers
 
         // GET: Items
         [Authorize]
-        public ActionResult Index()
+        public ActionResult Index(string search_string)
         {
 
+            //Find user currently logged in in the Users table, show all the items that belong to that user only.
+            //If user does not yet exist in Users table (Count() < 1) add them.
+            //If there are no items to show, GetUserItems() will return an empty list.
             string user_id = User.Identity.GetUserId();
             ApplicationUser real_user = Repo.Context.Users.FirstOrDefault(u => u.Id == user_id);
             Users me = null;
@@ -42,7 +45,18 @@ namespace TakinStock.Controllers
             }
 
             List<Items> list_of_items = Repo.GetUserItems(me);
-            return View(list_of_items);
+            var search_items = from i in Repo.Context.Items where i.Owner.UserID == me.UserID select i;
+
+            if (!String.IsNullOrEmpty(search_string))
+            {
+                search_items = search_items.Where(s => s.Type.Contains(search_string) || s.Make.Contains(search_string) || s.Description.Contains(search_string)
+                || s.PurchasedFrom.Contains(search_string) || s.PurchaseDate.ToString().Contains(search_string));
+                return View(search_items);
+            }
+            else
+            {
+                return View(list_of_items);
+            }
         }
 
         // GET: Items/Details/5

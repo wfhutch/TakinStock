@@ -4,90 +4,101 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>My Items</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        @*<th>
-            @Html.DisplayNameFor(model => model.Type)
-        </th>*@
-        <th>
-            @Html.DisplayNameFor(model => model.Make)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Model)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Description)
-        </th>
-        @*<th>
-            @Html.DisplayNameFor(model => model.SerialNumber)
-        </th>*@
-        <th>
-            @Html.DisplayNameFor(model => model.PurchasePrice)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PurchaseDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PurchasedFrom)
-        </th>
-        @*<th>
-            @Html.DisplayNameFor(model => model.Image)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LostByDamage)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Stolen)
-        </th>*@
-        <th></th>
-    </tr>
+    @Html.ActionLink("Add New Item", "Create")
+    @using (Html.BeginForm("Index", "Items", FormMethod.Get))
+    {
+    <p>
+        Search: @Html.TextBox("search_string") <br />
+    <p></p>
+    <input type="submit" value="Find" />
+    <p></p>
+    </p>
+    }
+    </p>
 
-@foreach (var item in Model) {
-    <tr>
-        @*<td>
-            @Html.DisplayFor(modelItem => item.Type)
-        </td>*@
-        <td>
-            @Html.DisplayFor(modelItem => item.Make)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Model)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        @*<td>
-            @Html.DisplayFor(modelItem => item.SerialNumber)
-        </td>*@
-        <td>
-            @Html.DisplayFor(modelItem => item.PurchasePrice)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PurchaseDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PurchasedFrom)
-        </td>
-        @*<td>
-            @Html.DisplayFor(modelItem => item.Image)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LostByDamage)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Stolen)
-        </td>*@
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ItemsID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ItemsID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ItemsID })
-        </td>
-    </tr>
-}
+    <table class="table">
+        <tr>
+            @*<th>
+                    @Html.DisplayNameFor(model => model.Type)
+                </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.Make)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Model)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            @*<th>
+                    @Html.DisplayNameFor(model => model.SerialNumber)
+                </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.PurchasePrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PurchaseDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PurchasedFrom)
+            </th>
+            @*<th>
+                    @Html.DisplayNameFor(model => model.Image)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.LostByDamage)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Stolen)
+                </th>*@
+            <th></th>
+        </tr>
 
-</table>
+        @foreach (var item in Model)
+        {
+            <tr>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.Type)
+                    </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.Make)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Model)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.SerialNumber)
+                    </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.PurchasePrice)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PurchaseDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PurchasedFrom)
+                </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.Image)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LostByDamage)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Stolen)
+                    </td>*@
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ItemsID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.ItemsID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ItemsID })
+                </td>
+            </tr>
+        }
+
+    </table>
