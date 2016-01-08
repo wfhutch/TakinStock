@@ -16,7 +16,7 @@ namespace TakinStock.Tests.Models
     {
         private Mock<StockContext> mock_context;
         private Mock<DbSet<Items>> mock_set;
-        private Mock<DbSet<Users>> mock_set_users;
+        private Mock<DbSet<TakinStockUsers>> mock_set_users;
         private StockRepository repo;
         private ApplicationUser test_user;
         private ApplicationUser test_user2;
@@ -37,17 +37,17 @@ namespace TakinStock.Tests.Models
             mock_context.Setup(a => a.Items).Returns(mock_set.Object);
         }
 
-        private void ConnectMocksToDataStore(IEnumerable<Users> data_store)
+        private void ConnectMocksToDataStore(IEnumerable<TakinStockUsers> data_store)
         {
             var data_source = data_store.AsQueryable();
 
-            mock_set_users.As<IQueryable<Users>>().Setup(data => data.Provider)
+            mock_set_users.As<IQueryable<TakinStockUsers>>().Setup(data => data.Provider)
                 .Returns(data_source.Provider);
-            mock_set_users.As<IQueryable<Users>>().Setup(data => data.Expression)
+            mock_set_users.As<IQueryable<TakinStockUsers>>().Setup(data => data.Expression)
                 .Returns(data_source.Expression);
-            mock_set_users.As<IQueryable<Users>>().Setup(data => data.ElementType)
+            mock_set_users.As<IQueryable<TakinStockUsers>>().Setup(data => data.ElementType)
                 .Returns(data_source.ElementType);
-            mock_set_users.As<IQueryable<Users>>().Setup(data => data.GetEnumerator())
+            mock_set_users.As<IQueryable<TakinStockUsers>>().Setup(data => data.GetEnumerator())
                 .Returns(data_source.GetEnumerator);
 
             mock_context.Setup(a => a.User).Returns(mock_set_users.Object);
@@ -58,7 +58,7 @@ namespace TakinStock.Tests.Models
         {
             mock_context = new Mock<StockContext>();
             mock_set = new Mock<DbSet<Items>>();
-            mock_set_users = new Mock<DbSet<Users>>();
+            mock_set_users = new Mock<DbSet<TakinStockUsers>>();
             repo = new StockRepository(mock_context.Object);
             test_user = new ApplicationUser { Email = "test@example.com", Id = "MyId" };
             test_user2 = new ApplicationUser { Email = "test2@example.com", Id = "MyId2" };
@@ -121,7 +121,7 @@ namespace TakinStock.Tests.Models
         public void RepoEnsureICanGetAllItemsForASpecificUser()
         {
             DateTime purchase_date = DateTime.Now.Date;
-            List<Users> users_table = new List<Users>();
+            List<TakinStockUsers> users_table = new List<TakinStockUsers>();
             List<Items> items_table = new List<Items>();
 
             Items test_item = new Items();
@@ -138,13 +138,13 @@ namespace TakinStock.Tests.Models
             test_item.Stolen = false;
 
             items_table.Add(test_item);
-            Users test_owner = new Users { RealUser = test_user, UserID = 1, Items = items_table};
+            TakinStockUsers test_owner = new TakinStockUsers { RealUser = test_user, UserID = 1, Items = items_table};
             users_table.Add(test_owner);
 
             ConnectMocksToDataStore(users_table);
             ConnectMocksToDataStore(items_table);
 
-            mock_set_users.Setup(i => i.Add(It.IsAny<Users>())).Callback((Users s) => users_table.Add(s));
+            mock_set_users.Setup(i => i.Add(It.IsAny<TakinStockUsers>())).Callback((TakinStockUsers s) => users_table.Add(s));
             mock_set.Setup(i => i.Add(It.IsAny<Items>())).Callback((Items s) => items_table.Add(s));
             List<Items> expected = repo.GetUserItems(test_owner);
 
@@ -154,11 +154,11 @@ namespace TakinStock.Tests.Models
         [TestMethod]
         public void RepoEnsureICanGetAllUsers()
         {
-            var expected = new List<Users>
+            var expected = new List<TakinStockUsers>
             {
-                new Users {UserID = 1},
-                new Users {UserID = 2},
-                new Users {UserID = 3}
+                new TakinStockUsers {UserID = 1},
+                new TakinStockUsers {UserID = 2},
+                new TakinStockUsers {UserID = 3}
             };
 
             mock_set_users.Object.AddRange(expected);
@@ -171,14 +171,14 @@ namespace TakinStock.Tests.Models
         [TestMethod]
         public void RepoEnsureICanAddANewUser()
         {
-            List<Users> emptyDB = new List<Users>(); //This is the empty database table
+            List<TakinStockUsers> emptyDB = new List<TakinStockUsers>(); //This is the empty database table
             ConnectMocksToDataStore(emptyDB);
 
-            mock_set_users.Setup(i => i.Add(It.IsAny<Users>())).Callback((Users s) => emptyDB.Add(s));
+            mock_set_users.Setup(i => i.Add(It.IsAny<TakinStockUsers>())).Callback((TakinStockUsers s) => emptyDB.Add(s));
 
             bool added = repo.AddNewUser(test_user);
 
-            Users stock_user = repo.GetAllUsers().Where(u => u.RealUser.Id == test_user.Id).SingleOrDefault();
+            TakinStockUsers stock_user = repo.GetAllUsers().Where(u => u.RealUser.Id == test_user.Id).SingleOrDefault();
             Assert.IsNotNull(stock_user);
             Assert.IsTrue(added);
             Assert.AreEqual(1, repo.GetAllUsers().Count);
@@ -188,13 +188,13 @@ namespace TakinStock.Tests.Models
         public void RepoEnsureICanAddANewItem()
         {
             DateTime purchase_date = DateTime.Now.Date;
-            Users user = new Users { UserID = 500 };
+            TakinStockUsers user = new TakinStockUsers { UserID = 500 };
             
             List<Items> emptyDB = new List<Items>(); //This is the empty database
             ConnectMocksToDataStore(emptyDB);
 
             int item_id = 1;
-            Users owner = user;
+            TakinStockUsers owner = user;
             string type = "Electronics";
             string make = "Samsung";
             string model = "HD48SM";

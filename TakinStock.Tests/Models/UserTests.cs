@@ -11,14 +11,14 @@ namespace TakinStock.Tests.Models
         [TestMethod]
         public void UserEnsureICanCreateAClassInstance()
         {
-            Users user = new Users();
+            TakinStockUsers user = new TakinStockUsers();
             Assert.IsNotNull(user);
         }
 
         [TestMethod]
         public void UserEnsureICanCreateEmail()
         {
-            Users user = new Users();
+            TakinStockUsers user = new TakinStockUsers();
             user.Email = "me@me.com";
             Assert.AreEqual("me@me.com", user.Email);
         } 
@@ -32,7 +32,7 @@ namespace TakinStock.Tests.Models
                 new Items {Make = "Gretsch" },
                 new Items {Make = "Yamaha" }
             };
-            Users user = new Users();
+            TakinStockUsers user = new TakinStockUsers();
             user.Items = items_list;
             List<Items> actual = user.Items;
             CollectionAssert.AreEqual(actual, items_list);
