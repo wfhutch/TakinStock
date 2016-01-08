@@ -87,7 +87,8 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.LostByDamage)
+            @Html.Raw((Model.LostByDamage) ? "Yes" : "No")
+            @*@Html.DisplayFor(model => model.LostByDamage)*@
         </dd>
 
         <dt>
@@ -95,7 +96,8 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Stolen)
+            @Html.Raw((Model.Stolen) ? "Yes" : "No")
+            @*@Html.DisplayFor(model => model.Stolen)*@
         </dd>
 
     </dl>
