@@ -46,9 +46,19 @@ textarea {
     color: antiquewhite !important;
 }
 
+.nav-li a:hover {
+    color: white !important;
+    font-size: 22px;
+}
+
 .navbar-brand {
     font-size: 26px;
     color: antiquewhite !important;
+}
+
+.navbar-brand:hover {
+    color: white !important;
+    font-size: 28px;
 }
 
 #new-item-header {
@@ -66,7 +76,7 @@ a {
 
 th {
     font-family: Times, "Times New Roman", Georgia, serif;
-    font-size: 1.5em;
+    font-size: 1.3em;
 }
 
 .home-index-greeting {
@@ -74,9 +84,22 @@ th {
     padding: 30px;
 }
 
-button {
-    background-color: brown;
-    color: white;
+tr {
+    font-family: Garamond, Georgia, serif;
+    font-size: 1.1em;
+}
+
+tr:nth-child(even) {
+    background-color: #ffe3ae;
+}
+
+.navbar-inverse .navbar-nav > li > a {
+    color: #F8E6D2;
+}
+
+.navbar-inverse .navbar-nav > li > a:hover {
+    color: white !important;
+    font-size: 22px;
 }
 
 
