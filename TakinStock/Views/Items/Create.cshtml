@@ -21,7 +21,11 @@
        {
            new SelectListItem {Text = "Electronics", Value = "1" },
            new SelectListItem {Text = "Computers/Phones", Value = "2" },
-           new SelectListItem {Text = "Instruments", Value = "3" }
+           new SelectListItem {Text = "Instruments", Value = "3" },
+           new SelectListItem {Text = "Tools", Value = "4" },
+           new SelectListItem {Text = "Jewelry", Value = "5" }
+
+
        }, "Select Item Type")
                 @Html.ValidationMessageFor(model => model.Type, "", new { @class = "text-danger" })
             </div>

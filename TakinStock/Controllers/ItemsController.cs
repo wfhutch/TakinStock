@@ -34,7 +34,7 @@ namespace TakinStock.Controllers
             //If there are no items to show, GetUserItems() will return an empty list.
             string user_id = User.Identity.GetUserId();
             ApplicationUser real_user = Repo.Context.Users.FirstOrDefault(u => u.Id == user_id);
-            Users me = null;
+            TakinStockUsers me = null;
             if (Repo.GetAllUsers().Where(u => u.RealUser.Id == user_id).Count() < 1)
             {
                 bool successful = Repo.AddNewUser(real_user);
@@ -97,13 +97,21 @@ namespace TakinStock.Controllers
             {
                 strDDLValue = "Computers/Phones";
             }
-            else
+            else if (strDDLValue == "3")
             {
                 strDDLValue = "Instruments";
             }
+            else if (strDDLValue == "4")
+            {
+                strDDLValue = "Tools";
+            }
+            else
+            {
+                strDDLValue = "Jewelry";
+            }
             string user_id = User.Identity.GetUserId();
             ApplicationUser real_user = Repo.Context.Users.FirstOrDefault(u => u.Id == user_id);
-            Users me = Repo.GetAllUsers().Where(u => u.RealUser.Id == user_id).First();
+            TakinStockUsers me = Repo.GetAllUsers().Where(u => u.RealUser.Id == user_id).First();
 
 
             if (ModelState.IsValid)

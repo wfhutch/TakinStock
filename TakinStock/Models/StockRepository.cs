@@ -32,14 +32,14 @@ namespace TakinStock.Models
             return query.ToList();
         }
 
-        public List<Items> GetUserItems(Users user)
+        public List<Items> GetUserItems(TakinStockUsers user)
         {
             if (user != null)
             {
                 var query = from u in _context.User where u.UserID == user.UserID select u;
                 var item_query = from i in _context.Items where i.Owner.UserID == user.UserID select i;
                 List<Items> my_items = item_query.ToList();
-                Users found_user = query.SingleOrDefault<Users>();
+                TakinStockUsers found_user = query.SingleOrDefault<TakinStockUsers>();
                 if (found_user == null)
                 {
                     return new List<Items>();
@@ -59,13 +59,13 @@ namespace TakinStock.Models
             }
         }
 
-        public List<Users> GetAllUsers()
+        public List<TakinStockUsers> GetAllUsers()
         {
             var query = from users in _context.User select users;
             return query.ToList();
         }
 
-        public bool AddNewItem(Users me, int id, string type, string make, string model, string description, string serialNumber, decimal purchasePrice, 
+        public bool AddNewItem(TakinStockUsers me, int id, string type, string make, string model, string description, string serialNumber, decimal purchasePrice, 
             DateTime purchaseDate, string purchasedFrom, string image, bool damaged, bool stolen)
         {
 
@@ -122,11 +122,11 @@ namespace TakinStock.Models
 
         public bool AddNewUser(ApplicationUser user)
         {
-            Users new_user = new Users { RealUser = user, Email = user.Email };
+            TakinStockUsers new_user = new TakinStockUsers { RealUser = user, Email = user.Email };
             bool is_added = true;
             try
             {
-                Users added_user = _context.User.Add(new_user);
+                TakinStockUsers added_user = _context.User.Add(new_user);
                 _context.SaveChanges();
             }
             catch (Exception)
