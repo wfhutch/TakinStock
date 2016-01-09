@@ -51,7 +51,5 @@ Initial view should show suggested stores in the user's area for replacement of 
 
 #### Links
 
-ERD -  https://www.gliffy.com/go/html5/9626735?app=1b5094b0-6042-11e2-bcfd-0800200c9a66
-
 Wireframes - https://moqups.com/#!/edit/wfhutch/qU4eeQOm
 
