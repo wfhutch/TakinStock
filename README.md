@@ -2,6 +2,8 @@
 
 This is a personal inventory app.  It is the culmination of three months of server-side progamming instruction at Nashville Software School.  The app was built using the .NET Framework with C#.
 
+As 1/11/2016 this app is deployed on Azure but throws an error when trying to display user items.  The app does run fine locally from Visual Studio.
+
 #### User Stories
 
 When user logs in they can either add items or search items.  User can also edit or delete items with buttons that will be on item display.
@@ -17,6 +19,8 @@ User can choose from a number of different categories to enter items into.
 	1. Electronics
 	2. Computers/Phones
 	3. Musical Instruments
+	4. Tools
+	5. Jewelry
 ````
 	
 User will enter a description of the item.
@@ -33,11 +37,11 @@ User will enter a description of the item.
 	9. Image
 ````
 	
-User can search by any one or more of the description categories.
+User can search by any of the description categories.
 
 When user clicks on edit button they should be directed to same page as entering new item so that any field can be edited.
 
-User can report an item as lost or stolen.  Radio buttons on edit page that change lost or stolen boolean to true.
+User can report an item as lost or stolen.  There should be checkboxes on edit page that change lost or stolen boolean to true.
 
 User can delete an item if it was sold or otherwise disposed of.  User should not remove an item that was reported as lost or stolen.
 
