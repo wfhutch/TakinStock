@@ -2,7 +2,7 @@
 
 This is a personal inventory app.  It is the culmination of three months of server-side progamming instruction at Nashville Software School.  The app was built using the .NET Framework with C#.
 
-As 1/11/2016 this app is deployed on Azure but throws an error when trying to display user items.  The app does run fine locally from Visual Studio.
+As of 1/11/2016 this app is deployed on Azure but throws an error when trying to display user items.  The app does run fine locally from Visual Studio.
 
 #### User Stories
 
