@@ -49,11 +49,5 @@ Delete button should be included on each item listed.  Verification should happe
 
 User name and address should not be listed anywhere in database.  Ownership should be tied to email only.
 
-Create report of stolen items as a PDF.  User could click on a report button and print all the items reported as either lost or stolen.
 
-Initial view should show suggested stores in the user's area for replacement of items.  Will use Google Maps API based on geo location of browser to find nearby stores for each category of item.
-
-#### Links
-
-Wireframes - https://moqups.com/#!/edit/wfhutch/qU4eeQOm
 
